@@ -28,6 +28,12 @@ finalInt=intel+raceInt
 finalWis=wis+raceWis
 finalCha=cha+raceCha
 
+finalStats=[finalStr,finalDex,finalCon,finalInt,finalWis,finalCha]
+n=len(finalStats)
+classGet=classes.getClass(finalStats,n)
+
+print(classGet)
+
 print("Final Stats")
 print(finalStr)
 print(finalDex)
@@ -50,9 +56,3 @@ print(strCon)
 print(strInt)
 print(strWis)
 print(strCha)
-
-finalStats=[finalStr,finalDex,finalCon,finalInt,finalWis,finalCha]
-n=len(finalStats)
-classGet=classes.getClass(finalStats,n)
-
-print(classGet)

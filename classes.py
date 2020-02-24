@@ -1,6 +1,6 @@
 import random
 
-classArray=[["Barbarian","Fighter"],["Rogue","Ranger"],["Barbarian","Fighter"],["Wizard","Druid"],["Wizard","Druid"],["Bard","Warlock","Socerer"]]
+classArray=[["Barbarian","Fighter","Monk"],["Rogue","Ranger","Monk"],["Barbarian","Monk","Fighter","Cleric"],["Wizard","Druid"],["Wizard","Druid","Cleric"],["Bard","Warlock","Socerer"]]
 
 #Fighter, Barbarian=>Strength, constitution
 #Wizards, Druids=>Wisdom, Intelligence
@@ -22,11 +22,9 @@ def largest(arr,n):
 
 def getClass(stats,n):
     large=largest(stats,n)
-    for i in range(0,5):
+    for i in range(0,6):
         if stats[i]==large:
             tempClass=classArray[i]
-            charClass=tempClass[random.randrange(0,1)]
+            tempClassLength=len(tempClass)
+            charClass=tempClass[random.randrange(0,tempClassLength)]
             return charClass
-    return charClass
-
-
