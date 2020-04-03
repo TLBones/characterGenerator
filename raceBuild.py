@@ -21,7 +21,7 @@ raceArray=[dragonborn,dwarf,elf,gnome,halfElf,halfling,halfOrc,human,tiefling]
 
 def setRace(n):
     race=races[n]
-    print(race)
+    #print(race)
     return race
 
 def setRaceStats(n):
