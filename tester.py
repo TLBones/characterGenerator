@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import *
+from tkinter import messagebox
 import os
 import charBuild
 import random
@@ -19,6 +20,15 @@ root.wm_title("5E Characters")
 mainList= Listbox(root, height=12, width=30, bg="powderblue")
 mainList.grid(row=0,rowspan=4,column=0,padx=10,pady=10)
 
+#Character Details
+detailList=Listbox(mainList,height=2,width=25,bg="powderblue")
+detailList.grid(row=0,column=0,columnspan=4,padx=10,pady=10)
+
+
+#Stat List Settings and Placement
+statList=Listbox(mainList, height=12, width=8,bg="powderblue")
+statList.grid(row=1,column=0)
+
 #Temporary Stat Holders
 tempStr=10
 tempDex=10
@@ -35,8 +45,18 @@ finalCha=StringVar(value=tempCha)
 finalStats=[finalStr,finalDex,finalCon,finalInt,finalWis,finalCha]
 
 #Stats
-statList=Listbox(mainList, height=12, width=8,bg="powderblue")
-statList.grid(row=0,column=0)
+#Character Details
+#Name
+name=tk.Entry(detailList,bg="powderblue")
+name.insert(0,"Name")
+name.grid(column=0,row=0)
+#Class
+n=len(finalStats)
+classGet=classes.getClass(finalStats,n)
+charClass=tk.Entry(detailList,bg="powderblue")
+#Race
+
+
 #Base Stats
 baseTex=Label(statList,text="Base Stats")
 strLabel=Label(statList,text="Strength",bg="powderblue")
@@ -65,7 +85,6 @@ chaTex=tk.Entry(statList,textvariable=finalCha,width=5)
 chaTex.grid(column=1,row=6)
 
 #Mod values
-#def statUpdate(finalStats):
 tempStrMod=modifiers.modFind(int(strTex.get()))
 tempDexMod=modifiers.modFind(int(dexTex.get()))
 tempConMod=modifiers.modFind(int(conTex.get()))
@@ -114,12 +133,12 @@ def modUpdate():
     tempIntMod=modifiers.modFind(int(intTex.get()))
     tempWisMod=modifiers.modFind(int(wisTex.get()))
     tempChaMod=modifiers.modFind(int(chaTex.get()))
-    strMod=StringVar(value=tempStrMod)
-    dexMod=StringVar(value=tempDexMod)
-    conMod=StringVar(value=tempConMod)
-    intMod=StringVar(value=tempIntMod)
-    wisMod=StringVar(value=tempWisMod)
-    chaMod=StringVar(value=tempChaMod)
+    strMod=IntVar(value=tempStrMod)
+    dexMod=IntVar(value=tempDexMod)
+    conMod=IntVar(value=tempConMod)
+    intMod=IntVar(value=tempIntMod)
+    wisMod=IntVar(value=tempWisMod)
+    chaMod=IntVar(value=tempChaMod)
     #Update
     strModTex.configure(textvariable=strMod)
     dexModTex.configure(textvariable=dexMod)
@@ -130,6 +149,31 @@ def modUpdate():
     #Repeat
     root.after(1000, modUpdate)
 modUpdate()
+
+#Function for creating a random character
+def newChar():
+    finalStr=statBuild.setStat()
+    strTex.delete(0,END)
+    strTex.insert(0,str(finalStr))
+    finalDex=statBuild.setStat()
+    dexTex.delete(0,END)
+    dexTex.insert(0,str(finalDex))
+    finalCon=statBuild.setStat()
+    conTex.delete(0,END)
+    conTex.insert(0,str(finalCon))
+    finalInt=statBuild.setStat()
+    intTex.delete(0,END)
+    intTex.insert(0,str(finalInt))
+    finalWis=statBuild.setStat()
+    wisTex.delete(0,END)
+    wisTex.insert(0,str(finalWis))
+    finalCha=statBuild.setStat()
+    chaTex.delete(0,END)
+    chaTex.insert(0,str(finalCha))
+
+#Create Random Character button
+makeNew=Button(root, text="New Character", fg="black",bg="gray", command=newChar)
+makeNew.grid(row=5, column=0, padx=10, pady=5, sticky=S)
 
 #Run and compile
 root.mainloop()

@@ -8,13 +8,9 @@ classArray=[["Barbarian","Fighter","Monk"],["Rogue","Ranger","Monk"],["Barbarian
 #Bards, Warlocks, Sorcerers=> Charisma
 
 def largest(arr,n): 
-  
     # Initialize maximum element 
     max = arr[0] 
-  
-    # Traverse array elements from second 
-    # and compare every element with  
-    # current max 
+    # Traverse array elements from second and compare every element with current max 
     for i in range(1, n): 
         if arr[i] > max: 
             max = arr[i] 
